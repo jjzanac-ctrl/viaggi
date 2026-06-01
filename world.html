@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TravelWorld</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f5f5f5;
+}
+
+header{
+    background:#0077cc;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
+
+.box{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+input, select, button{
+    padding:10px;
+    margin:5px;
+}
+
+.gallery img{
+    border-radius:8px;
+    margin:10px;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>TravelWorld</h1>
+    <p>Trova voli e hotel al miglior prezzo</p>
+</header>
+
+<div class="container">
+
+    <div class="box">
+        <h2>Ricerca Voli</h2>
+
+        <input type="text" placeholder="Partenza">
+        <input type="text" placeholder="Destinazione">
+        <input type="date">
+        <button>Cerca Voli</button>
+    </div>
+
+    <div class="box">
+        <h2>Ricerca Hotel</h2>
+
+        <input type="text" placeholder="Città">
+        <input type="date">
+        <input type="date">
+        <button>Cerca Hotel</button>
+    </div>
+
+    <div class="box">
+        <h2>Galleria Immagini</h2>
+
+        <input type="file" id="upload">
+
+        <label>Larghezza:</label>
+        <input type="number" id="width" value="400">
+
+        <label>Altezza:</label>
+        <input type="number" id="height" value="250">
+
+        <div class="gallery" id="gallery"></div>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("upload").addEventListener("change", function(e){
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+
+        const img = document.createElement("img");
+
+        img.src = event.target.result;
+        img.width = document.getElementById("width").value;
+        img.height = document.getElementById("height").value;
+
+        document.getElementById("gallery").appendChild(img);
+    };
+
+    reader.readAsDataURL(file);
+});
+</script>
+
+</body>
+</html>
